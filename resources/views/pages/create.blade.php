@@ -1,85 +1,63 @@
 @extends('layouts.layout')
 
-@section('title', 'Tambah Data Workshop')
+@section('title', 'Tambah Workshop')
 
 @section('content')
 <div class="row justify-content-center">
-    <div class="col-md-8">
-        <div class="card border-0 shadow-lg rounded-lg">
-            <div class="card-header bg-primary text-white">
-                <h5 class="mb-0 fw-bold"><i class="fas fa-plus-circle me-2"></i> Tambah Workshop Baru</h5>
+    <div class="col-lg-8">
+        <div class="card border-0 shadow-lg rounded-4">
+            <div class="card-header bg-white py-3 border-bottom-0">
+                <h5 class="mb-0 fw-bold text-primary"><i class="fas fa-plus-circle me-2"></i>Formulir Workshop Baru</h5>
             </div>
             <div class="card-body p-4">
-                
                 <form action="{{ route('workshops.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    
+                    <div class="mb-4 text-center">
+                        <label class="form-label fw-bold d-block text-start">Upload Poster</label>
+                        <div class="p-4 border-2 border-dashed rounded-3 bg-light">
+                            <input type="file" class="form-control" name="gambar" required>
+                            <small class="text-muted d-block mt-2">Format: JPG, JPEG, PNG (Max: 2MB)</small>
+                        </div>
+                        @error('gambar') <small class="text-danger">{{ $message }}</small> @enderror
+                    </div>
 
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">GAMBAR POSTER</label>
-                        <input type="file" class="form-control @error('gambar') is-invalid @enderror" name="gambar">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Tema Workshop</label>
+                            <input type="text" class="form-control form-control-lg bg-light" name="tema" placeholder="Contoh: Belajar Laravel Dasar" value="{{ old('tema') }}">
+                            @error('tema') <small class="text-danger">{{ $message }}</small> @enderror
+                        </div>
                         
-                        @error('gambar')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label fw-bold">TEMA WORKSHOP</label>
-                        <input type="text" class="form-control @error('tema') is-invalid @enderror" name="tema" value="{{ old('tema') }}" placeholder="Masukkan Tema Workshop">
-                        
-                        @error('tema')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">PEMBICARA</label>
-                            <input type="text" class="form-control @error('pembicara') is-invalid @enderror" name="pembicara" value="{{ old('pembicara') }}" placeholder="Nama Pembicara">
-                            
-                            @error('pembicara')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Pembicara</label>
+                            <input type="text" class="form-control bg-light" name="pembicara" placeholder="Nama Pemateri" value="{{ old('pembicara') }}">
                         </div>
 
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">PENYELENGGARA</label>
-                            <input type="text" class="form-control @error('penyelenggara') is-invalid @enderror" name="penyelenggara" value="{{ old('penyelenggara') }}" placeholder="Penyelenggara">
-                            
-                            @error('penyelenggara')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Penyelenggara</label>
+                            <input type="text" class="form-control bg-light" name="penyelenggara" placeholder="Nama Organisasi/Kampus" value="{{ old('penyelenggara') }}">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Lokasi</label>
+                            <input type="text" class="form-control bg-light" name="lokasi" placeholder="Gedung / Link Zoom" value="{{ old('lokasi') }}">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Tanggal</label>
+                            <input type="date" class="form-control bg-light" name="tanggal" value="{{ old('tanggal') }}">
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">LOKASI</label>
-                            <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi" value="{{ old('lokasi') }}" placeholder="Lokasi Acara">
-                            
-                            @error('lokasi')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                    <hr class="my-4">
 
-                        <div class="col-md-6 mb-3">
-                            <label class="form-label fw-bold">TANGGAL</label>
-                            <input type="date" class="form-control @error('tanggal') is-invalid @enderror" name="tanggal" value="{{ old('tanggal') }}">
-                            
-                            @error('tanggal')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
+                    <div class="d-flex justify-content-end gap-2">
+                        <a href="{{ route('workshops.index') }}" class="btn btn-light border rounded-pill px-4">Batal</a>
+                        <button type="submit" class="btn btn-primary rounded-pill px-5 fw-bold" style="background: #667eea; border:none;">
+                            <i class="fas fa-save me-1"></i> SIMPAN DATA
+                        </button>
                     </div>
-
-                    <hr>
-
-                    <div class="d-flex gap-2">
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-save me-1"></i> SIMPAN</button>
-                        <button type="reset" class="btn btn-warning"><i class="fas fa-redo me-1"></i> RESET</button>
-                        <a href="{{ route('workshops.index') }}" class="btn btn-secondary"><i class="fas fa-arrow-left me-1"></i> KEMBALI</a>
-                    </div>
-
                 </form>
             </div>
         </div>
