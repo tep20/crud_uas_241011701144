@@ -1,0 +1,289 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+:root {
+    --gold-primary: #D4AF37;       
+    --gold-light: #F2C94C;         
+    --gold-dark: #AA8C2C;          
+    --bg-black: #050505;           
+    --bg-card: #121212;            
+    --text-white: #F5F5F5;        
+    --text-gray: #D0CEC8;          
+    --text-strong: #E8E6E1;       
+    --border-color: #333333;       
+}
+
+/* --- 3. BASE STYLES --- */
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    /* Efek sorotan cahaya (vignette) di tengah layar */
+    background-image: radial-gradient(circle at 50% 0%, #1a1a1a 0%, #050505 80%);
+    background-attachment: fixed; /* Background tetap saat discroll */
+    min-height: 100vh;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* --- 4. TYPOGRAPHY --- */
+h1, h2, h3, h4, h5, h6, .navbar-brand {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-primary);
+    text-transform: uppercase;
+    letter-spacing: 1.5px; /* Jarak antar huruf lebih lebar */
+    margin-bottom: 1rem;
+}
+
+p {
+    color: var(--text-strong);
+    font-size: 1rem;
+}
+
+.lead {
+    color: var(--text-gray);
+    font-size: 1.125rem;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+/* --- 5. COMPONENT: CARD (KARTU PRODUK) --- */
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 2px; /* Sudut tajam untuk kesan tegas/mewah */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Bayangan dalam */
+    transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px); /* Naik sedikit saat di-hover */
+    border-color: var(--gold-dark); /* Border berubah jadi emas */
+    box-shadow: 0 15px 40px rgba(212, 175, 55, 0.15); /* Glow emas halus */
+}
+
+.card-title {
+    color: var(--text-white);
+    font-weight: 600;
+}
+
+.card-text {
+    font-size: 0.95rem;
+    color: var(--text-gray);
+}
+
+
+.btn-gold {
+    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--gold-light) 100%);
+    border: none;
+    color: #050505; /* Teks hitam agar kontras */
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 10px 25px;
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.btn-gold:hover {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+    color: #000;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); 
+    transform: scale(1.02);
+}
+
+
+.btn-outline-gold {
+    background: transparent;
+    border: 1px solid var(--gold-primary);
+    color: var(--gold-primary);
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    padding: 8px 20px;
+    transition: all 0.3s ease;
+}
+
+.btn-outline-gold:hover {
+    background-color: var(--gold-primary);
+    color: #050505;
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+}
+
+
+.btn-danger {
+    background-color: #3e0a0a;
+    border: 1px solid #7f1d1d;
+    color: #fca5a5;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+}
+
+.btn-danger:hover {
+    background-color: #7f1d1d;
+    color: #fff;
+    border-color: #ef4444;
+}
+
+
+.form-control, .form-select, textarea {
+    background-color: #161616;
+    border: 1px solid var(--border-color);
+    color: var(--text-strong);
+    border-radius: 4px;
+    padding: 10px 12px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.form-control:focus, .form-select:focus, textarea:focus {
+    background-color: #222;
+    border-color: var(--gold-primary);
+    color: var(--text-white);
+    box-shadow: 0 0 0 0.2rem rgba(212, 175, 55, 0.25); /* Fokus glow emas */
+    outline: none;
+}
+
+.form-label {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/* Placeholder text color */
+::placeholder {
+    color: #9a9a9a !important;
+    font-style: italic;
+}
+
+/* --- 8. COMPONENT: NAVBAR (NAVIGATION) --- */
+.navbar {
+    background-color: rgba(5, 5, 5, 0.95) !important; /* Hampir transparan */
+    border-bottom: 1px solid #222;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.nav-link {
+    color: var(--gold-primary) !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.92rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--gold-primary) !important;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.navbar-toggler {
+    border-color: var(--gold-dark);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(212, 175, 55, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* --- 9. COMPONENT: TABLES (TABEL) --- */
+.table {
+    border-color: #333;
+}
+
+.table-dark {
+    background-color: transparent;
+    --bs-table-bg: transparent;
+    --bs-table-striped-bg: rgba(255, 255, 255, 0.03);
+}
+
+.table-dark th {
+    color: var(--gold-primary);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    border-bottom: 2px solid var(--gold-dark);
+    padding: 15px;
+    text-transform: uppercase;
+}
+
+.table-dark td {
+    vertical-align: middle;
+    color: var(--text-strong);
+    padding: 12px 15px;
+    border-bottom: 1px solid #222;
+}
+
+/* --- 10. COMPONENT: PAGINATION --- */
+.pagination {
+    margin-top: 2rem;
+}
+
+.pagination .page-link {
+    background-color: var(--bg-card);
+    border: 1px solid #333;
+    color: var(--text-gray);
+    font-family: 'Cinzel', serif;
+}
+
+/* Bootstrap-style paginator overrides (compatible with Laravel's default Bootstrap pagination) */
+
+/* --- 11. COMPONENT: FOOTER --- */
+footer {
+    background-color: #000;
+    border-top: 1px solid #222;
+    padding: 3rem 0;
+    margin-top: auto;
+}
+
+footer h5 {
+    color: var(--gold-primary);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+footer p, footer li a {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+footer li a:hover {
+    color: var(--gold-primary);
+}
+
+/* --- 12. UTILITIES & ALERTS --- */
+.text-gold { color: var(--gold-primary) !important; }
+.bg-gold { background-color: var(--gold-primary) !important; }
+
+/* Alert Styling (Untuk Pesan Sukses) */
+.alert-success {
+    background-color: rgba(15, 31, 16, 0.9);
+    border: 1px solid #1a4d1f;
+    color: #4ade80;
+    border-left: 5px solid #4ade80;
+}
+
+.alert-danger {
+    background-color: rgba(31, 15, 15, 0.9);
+    border: 1px solid #4d1a1a;
+    color: #f87171;
+    border-left: 5px solid #f87171;
+}
+
+/* Styling Toastr (Notifikasi Popup) */
+#toast-container > .toast-success {
+    background-color: rgba(15, 31, 16, 0.9) !important;
+    border: 1px solid #1a4d1f !important;
+    color: #4ade80 !important;
+}
